@@ -9,7 +9,9 @@ namespace Lab3
     {
         public Hashtable listOfComputers = new Hashtable();
         public Dictionary<string, Proccess> listOfProcess = new Dictionary<string, Proccess>();
+        public Dictionary<string, Proccess> listOfProcess2 = new Dictionary<string, Proccess>();
         public List<Proccess> proccess;
+        public List<Proccess> proccess2;
         enum user
         {
             allUsers,
@@ -44,7 +46,9 @@ namespace Lab3
             listOfProcess.Add("browser", new Proccess("browser", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.medium, "---", (int)priority.high));
             listOfProcess.Add("operation system", new Proccess("operation system", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.moreThanSmall, "---", (int)priority.medium)); 
             listOfProcess.Add("visual studio", new Proccess("visual studio", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
-
+            listOfProcess2.Add("browser", new Proccess("browser", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.medium, "---", (int)priority.high));
+            listOfProcess2.Add("operation system", new Proccess("operation system", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.moreThanSmall, "---", (int)priority.medium));
+            listOfProcess2.Add("visual studio", new Proccess("visual studio", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
             proccess = new List<Proccess>(listOfProcess.Values);
 
             listOfComputers.Add(1, new Сomputer(4096, proccess, 3300, 8)); 
@@ -52,8 +56,8 @@ namespace Lab3
             proccess = new List<Proccess>(listOfProcess.Values);
             listOfComputers.Add(2, new Сomputer(8192, proccess, 2300, 2));
             listOfProcess.Add("test_2", new Proccess("test_2", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
-            proccess = new List<Proccess>(listOfProcess.Values);
-            listOfComputers.Add(3, new Сomputer(2048, proccess, 1900, 4));
+            proccess2 = new List<Proccess>(listOfProcess2.Values);
+            listOfComputers.Add(3, new Сomputer(2048, proccess2, 1900, 4));
 
         }
     }

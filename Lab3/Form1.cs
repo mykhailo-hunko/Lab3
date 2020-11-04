@@ -33,15 +33,11 @@ namespace Lab3
         }
         private void inizialazeGrid(int numberOfComp)
         {
-           for(int i = 1; i< MaxCount; i++)
-            {
-               
-                if (manager.listOfComputers[i] != null)
-                {
+          
                     dataGridView1.Rows.Clear();
                     string[] grid = new string[6];
             
-                Сomputer comp = ((Сomputer)manager.listOfComputers[i]);
+                Сomputer comp = ((Сomputer)manager.listOfComputers[numberOfComp]);
 
                   for (int j = 0; j < comp.proccess.Count; j++)
                   {
@@ -59,12 +55,8 @@ namespace Lab3
                           grid[5] = "User";
                       }
                         dataGridView1.Rows.Add(grid);
+                  
                   }
-                    
-                    break;
-                }
-                   numberOfComp++;
-            }
           
         }
 
@@ -84,6 +76,7 @@ namespace Lab3
                 MessageBox.Show("Сначала выберите компьютер!!!", "Ошибка");
                 return;
             }
+
             Add(true);
            
         }
@@ -100,6 +93,10 @@ namespace Lab3
                
                 form = new Form3((Сomputer)manager.listOfComputers[addNumber], true);
                 form.ShowDialog();
+                if (((Сomputer)manager.listOfComputers[addNumber]).ram == 0)
+                {
+                    manager.listOfComputers.Remove(addNumber);
+                }
             }
             else
             {
@@ -107,10 +104,7 @@ namespace Lab3
                 {
                      form = new Form3((Сomputer)manager.listOfComputers[selectedIndex], true);
                     form.ShowDialog();
-                    if (((Сomputer)manager.listOfComputers[selectedIndex]).ram == 0)
-                    {
-                        manager.listOfComputers.Remove(addNumber);
-                    }
+                   
                 }
                 else
                 {
@@ -127,6 +121,7 @@ namespace Lab3
             { 
                     manager.listOfComputers.Remove(list.SelectedIndex + 1);
                         inizialazeDrop();
+                dataGridView1.Rows.Clear();
             } 
             else
             {
@@ -140,14 +135,14 @@ namespace Lab3
             string str = list.SelectedItem.ToString();
             selectedIndex = Convert.ToInt32(str.Substring(10, 11).Substring(0, 1));
             proc_number.Text = selectedIndex.ToString();
-            inizialazeGrid(MaxCount);
+            inizialazeGrid(selectedIndex);
         }
 
         private void change_proc_Click(object sender, EventArgs e)
         {
             Form2 form = new Form2(((Сomputer)manager.listOfComputers[selectedIndex]).proccess[dataGridView1.CurrentRow.Index], true);
             form.ShowDialog();
-            inizialazeGrid(0);
+            inizialazeGrid(selectedIndex);
         }
     }
 }
