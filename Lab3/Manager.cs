@@ -10,8 +10,10 @@ namespace Lab3
         public Hashtable listOfComputers = new Hashtable();
         public Dictionary<string, Proccess> listOfProcess = new Dictionary<string, Proccess>();
         public Dictionary<string, Proccess> listOfProcess2 = new Dictionary<string, Proccess>();
+        public Dictionary<string, Proccess> listOfProcess3 = new Dictionary<string, Proccess>();
         public List<Proccess> proccess;
         public List<Proccess> proccess2;
+        public List<Proccess> proccess3;
         enum user
         {
             allUsers,
@@ -42,22 +44,28 @@ namespace Lab3
             biggest = 1024
         }
         public Manager()
-        {   
-            listOfProcess.Add("browser", new Proccess("browser", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.medium, "---", (int)priority.high));
-            listOfProcess.Add("operation system", new Proccess("operation system", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.moreThanSmall, "---", (int)priority.medium)); 
-            listOfProcess.Add("visual studio", new Proccess("visual studio", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
-            listOfProcess2.Add("browser", new Proccess("browser", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.medium, "---", (int)priority.high));
-            listOfProcess2.Add("operation system", new Proccess("operation system", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.moreThanSmall, "---", (int)priority.medium));
-            listOfProcess2.Add("visual studio", new Proccess("visual studio", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
+        {
+            inizList(listOfProcess);
+            inizList(listOfProcess2);
+            inizList(listOfProcess3);
+
             proccess = new List<Proccess>(listOfProcess.Values);
 
             listOfComputers.Add(1, new Сomputer(4096, proccess, 3300, 8)); 
-            listOfProcess.Add("test_1", new Proccess("test_1", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
-            proccess = new List<Proccess>(listOfProcess.Values);
-            listOfComputers.Add(2, new Сomputer(8192, proccess, 2300, 2));
-            listOfProcess.Add("test_2", new Proccess("test_2", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
+            listOfProcess2.Add("test_1", new Proccess("test_1", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
             proccess2 = new List<Proccess>(listOfProcess2.Values);
-            listOfComputers.Add(3, new Сomputer(2048, proccess2, 1900, 4));
+            listOfComputers.Add(2, new Сomputer(8192, proccess2, 2300, 2));
+            listOfProcess3.Add("test_2", new Proccess("test_2", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
+            proccess3 = new List<Proccess>(listOfProcess3.Values);
+            listOfComputers.Add(3, new Сomputer(2048, proccess3, 1900, 4));
+
+        }
+
+        private void inizList(Dictionary<string, Proccess> listOfProcessTemp)
+        {
+            listOfProcessTemp.Add("browser", new Proccess("browser", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.medium, "---", (int)priority.high));
+            listOfProcessTemp.Add("operation system", new Proccess("operation system", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.moreThanSmall, "---", (int)priority.medium));
+            listOfProcessTemp.Add("visual studio", new Proccess("visual studio", (int)user.admin, (int)proccessor_percent.low, (int)memoryForProccess.small, "---", (int)priority.medium));
 
         }
     }

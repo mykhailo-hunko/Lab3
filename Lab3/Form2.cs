@@ -21,6 +21,21 @@ namespace Lab3
                 text_user.Text = proccess.user.ToString();
             }
         }
+        public Form2(List <Proccess> proccesses, bool flagNewOrChange)
+        {
+            InitializeComponent();
+            proccesses.Add(new Proccess("", 0, 0, 0, "", 0));
+            this.proccess = proccesses[proccesses.Count - 1];
+            if (flagNewOrChange)
+            {
+                text_name.Text = proccess.name;
+                text_desc.Text = proccess.desc;
+                text_memory.Text = proccess.memoryForProccess.ToString();
+                text_priority.Text = proccess.priority.ToString();
+                text_proc.Text = proccess.proccessor_number.ToString();
+                text_user.Text = proccess.user.ToString();
+            }
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {

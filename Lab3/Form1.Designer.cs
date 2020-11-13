@@ -106,6 +106,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.process,
@@ -118,6 +119,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(771, 368);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
             // process
             // 
@@ -167,6 +169,7 @@
             this.delete_proc.TabIndex = 7;
             this.delete_proc.Text = "Удалить процесс";
             this.delete_proc.UseVisualStyleBackColor = true;
+            this.delete_proc.Click += new System.EventHandler(this.delete_proc_Click);
             // 
             // change_proc
             // 

@@ -9,6 +9,8 @@ namespace Lab3
         int MaxCount = 0;
          public Manager manager;
         int selectedIndex = 0;
+       public static bool isAdmin = false;
+
         public Form1()
         {
            
@@ -16,7 +18,9 @@ namespace Lab3
              manager = new Manager();
             MaxCount = manager.listOfComputers.Count + 1;
             inizialazeDrop();
-          
+            
+
+
         }
         private void inizialazeDrop()
         {
@@ -62,7 +66,18 @@ namespace Lab3
 
         private void add_proc_Click(object sender, EventArgs e)
         {
-           
+            if (list.SelectedItem != null)
+            {
+               
+                Form2 form = new Form2(((Сomputer)manager.listOfComputers[selectedIndex]).proccess, false);
+            form.ShowDialog();
+            inizialazeGrid(selectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Сначала выберите компьютер!!!", "Ошибка");
+            }
+            
         }
 
         private void change_Click(object sender, EventArgs e)
@@ -140,9 +155,64 @@ namespace Lab3
 
         private void change_proc_Click(object sender, EventArgs e)
         {
-            Form2 form = new Form2(((Сomputer)manager.listOfComputers[selectedIndex]).proccess[dataGridView1.CurrentRow.Index], true);
-            form.ShowDialog();
-            inizialazeGrid(selectedIndex);
+            if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows != null)
+            {
+                dataGridView1_MyClick();
+            } else
+            {
+                MessageBox.Show("Сначала выберите процесс!!!", "Ошибка");
+            }
         }
+
+        private void validateAdmin()
+        {
+            if (!isAdmin)
+            {
+                valid valid = new valid();
+                valid.ShowDialog();
+            } 
+        }
+
+        private void delete_proc_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows != null)
+            {
+                if (dataGridView1.CurrentRow.Index < ((Сomputer)manager.listOfComputers[selectedIndex]).proccess.Count - 1)
+                {
+                    Proccess proc = ((Сomputer)manager.listOfComputers[selectedIndex]).proccess[dataGridView1.CurrentRow.Index];
+                    ((Сomputer)manager.listOfComputers[selectedIndex]).proccess.Remove(proc);
+
+                    inizialazeGrid(selectedIndex);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Сначала выберите процесс!!!", "Ошибка");
+            }
+        }
+
+        private void dataGridView1_MyClick()
+        {
+            if (((Сomputer)manager.listOfComputers[selectedIndex]).proccess[dataGridView1.CurrentRow.Index].user == 1)
+            {
+                validateAdmin();
+            }
+            if (isAdmin)
+            {
+                Form2 form = new Form2(((Сomputer)manager.listOfComputers[selectedIndex]).proccess[dataGridView1.CurrentRow.Index], true);
+                form.ShowDialog();
+                inizialazeGrid(selectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Вы не админ!", "Ошибка");
+            }
+        }
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            dataGridView1_MyClick();
+        }
+
+       
     }
 }

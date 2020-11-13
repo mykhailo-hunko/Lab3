@@ -68,6 +68,12 @@
     <Compile Include="Proccess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="valid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="valid.Designer.cs">
+      <DependentUpon>valid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Сomputer.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -87,6 +93,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="valid.resx">
+      <DependentUpon>valid.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
